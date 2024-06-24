@@ -1,3 +1,6 @@
+"use client"
+import { prisma } from "@/libs/prisma"
+
 export default function TableRecent() {
     return (
         <div className=" text-color-putih mt-10 lg:ml-96 lg:mr-32 md:ml-8 md:mr-8 ml-2 mr-2">

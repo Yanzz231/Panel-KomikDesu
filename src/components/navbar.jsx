@@ -4,6 +4,7 @@ import { List, MonitorPlay, Book, CaretDown, FolderSimplePlus  } from "@phosphor
 import Image from "next/image"
 import { useState } from "react"
 
+
 export default function Navbar() {
 
     const [sidebar, setSidebar] = useState(false)
@@ -23,7 +24,7 @@ export default function Navbar() {
                         </div>
 
                         <div className="relative flex items-center text-color-putih">
-                            <button onClick={() => setDropdown(!dropdown)}><Image src={"/favicon.png"} width={44} height={120} className="" /></button>
+                            <button onClick={() => setDropdown(!dropdown)}><Image src={"/favicon.png"} width={44} height={120} alt="Logo" className="" /></button>
                             {dropdown && (
                                 <div className="absolute right-0 top-14 mt-2 w-60 bg-white rounded-md shadow-lg bg-color-abu2 z-50">
                                     <div className="flex flex-col p-4">
