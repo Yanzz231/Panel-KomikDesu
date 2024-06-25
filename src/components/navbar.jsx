@@ -1,6 +1,6 @@
 "use client"
 
-import { List, MonitorPlay, Book, CaretDown, FolderSimplePlus  } from "@phosphor-icons/react"
+import { List, MonitorPlay, Book, CaretDown, FolderSimplePlus } from "@phosphor-icons/react"
 import Image from "next/image"
 import { useState } from "react"
 
@@ -63,15 +63,15 @@ export default function Navbar() {
                             <div className={`w-full px-2 mt-2 ${listButton ? "" : "hidden"}`}>
                                 <div className="bg-color-abu4 p-2 gap-2 flex flex-col rounded-lg">
                                     <a href="/list-manga" className="cursor-pointer flex w-full hover:bg-color-biru p-2 rounded-md">List Manga</a>
-                                    <a className="cursor-pointer flex w-full hover:bg-color-biru p-2 rounded-md">List Manhwa</a>
-                                    <a className="cursor-pointer flex w-full hover:bg-color-biru p-2 rounded-md">List Manhua</a>
+                                    <a href="/list-manhwa" className="cursor-pointer flex w-full hover:bg-color-biru p-2 rounded-md">List Manhwa</a>
+                                    <a href="/list-manhua" className="cursor-pointer flex w-full hover:bg-color-biru p-2 rounded-md">List Manhua</a>
                                 </div>
                             </div>
                         </li>
 
                         <li>
                             <a href="/add" className="cursor-pointer w-full flex items-center gap-2 p-2 hover:bg-color-biru rounded-lg">
-                                <FolderSimplePlus  size={34} />
+                                <FolderSimplePlus size={34} />
                                 <div>Add Series</div>
                             </a>
                         </li>

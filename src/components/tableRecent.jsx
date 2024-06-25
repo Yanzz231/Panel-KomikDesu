@@ -1,15 +1,27 @@
-import { prisma } from "@/libs/prisma"
+"use client"
+import { useEffect, useState } from "react"
 
 import ListData from "./listData"
 
-export default async function TableRecent() {
-    
-    const data = await prisma.series.findMany({ take: 10 })
+export default function TableRecent({ limit, type }) {
+
+    const [data, setData] = useState(undefined)
+
+    const dataGet = async () => {
+        const dataBody = { limit: limit, type: type }
+        const getSeries = await fetch('/api/series', {
+            method: "POST",
+            body: JSON.stringify(dataBody)
+        })
+        const postSeries = await getSeries.json()
+        setData(postSeries.getSeries)
+    }
+
+    useEffect(() => {
+        dataGet()
+    }, [])
 
     return (
-        <div className=" text-color-putih mt-10 lg:ml-96 lg:mr-32 md:ml-8 md:mr-8 ml-2 mr-2">
-            <h1 className="text-xl mx-2">Recent Series Update</h1>
-            <ListData res={data} />
-        </div>
+        <ListData res={data} setData={setData} />
     )
 }

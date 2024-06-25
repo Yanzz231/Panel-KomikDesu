@@ -5,15 +5,9 @@ import { textPopUp } from "@/libs/swal"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
-export default function ListData({ res }) {
+export default function ListData({ res, setData }) {
 
     const router = useRouter()
-
-    const [data, setData] = useState([])
-
-    useEffect(() => {
-        setData(res)
-    }, [])
 
     const handleRemove = async (event, series) => {
         event.preventDefault()
@@ -41,7 +35,7 @@ export default function ListData({ res }) {
                 </tr>
             </thead>
             <tbody>
-                {data.map(res => {
+                {res?.map(res => {
                     return (
                         <tr key={res.id} className="border-b border-color-abu4 text-sm">
                             <td className="px-5 pt-3">{res.title}</td>
