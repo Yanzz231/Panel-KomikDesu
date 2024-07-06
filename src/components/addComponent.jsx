@@ -52,7 +52,7 @@ export default function AddComponent() {
                 <div className="grid grid-cols-2 mt-8">
                     <div className="flex flex-col me-4 gap-2">
                         <h1>Title</h1>
-                        <input type="text" name="" id="" value={title} onChange={(event) => handleData(event, "title")} placeholder="Naruto.." className="rounded-md border-color-abu5 border bg-color-abu2 px-2 py-1" />
+                        <input type="text" name="" id="" value={title} onChange={(event) => handleData(event, "title")} placeholder="Naruto.." className="focus:outline-none rounded-md border-color-abu5 border bg-color-abu2 px-2 py-1" />
                     </div>
 
                     <div className="flex flex-col ms-4 gap-2">
@@ -68,7 +68,7 @@ export default function AddComponent() {
                 <div className="mt-8">
                     <div className="flex flex-col gap-2">
                         <h1>Genre</h1>
-                        <input type="text" name="" id="" value={genre} onChange={(event) => handleData(event, "genre")} placeholder="Isekai, Romance" className="rounded-md border-color-abu5 border bg-color-abu2 px-2 py-1.5" />
+                        <input type="text" name="" id="" value={genre} onChange={(event) => handleData(event, "genre")} placeholder="Isekai, Romance" className="focus:outline-none rounded-md border-color-abu5 border bg-color-abu2 px-2 py-1.5" />
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@ export default function AddComponent() {
                 <div className="grid grid-cols-2 mt-8">
                     <div className="flex flex-col me-4 gap-2">
                         <h1>Release</h1>
-                        <input type="text" name="" id="" value={release} onChange={(event) => handleData(event, "release")} placeholder="17 Agustus..." className="rounded-md border-color-abu5 border bg-color-abu2 px-2 py-1" />
+                        <input type="text" name="" id="" value={release} onChange={(event) => handleData(event, "release")} placeholder="17 Agustus..." className="focus:outline-none rounded-md border-color-abu5 border bg-color-abu2 px-2 py-1" />
                     </div>
 
                     <div className="flex flex-col ms-4 gap-2">

@@ -1,27 +1,46 @@
 "use client"
 
-import { textPopUp } from "@/libs/swal"
+import { textEditPopUp, textPopUp } from "@/libs/swal"
 
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
 
 export default function ListData({ res, setData }) {
 
     const router = useRouter()
 
-    const handleRemove = async (event, series) => {
+    const handleRemove = (event, series) => {
         event.preventDefault()
-
-        const response = await fetch('/api/deleteseries', {
-            method: "POST",
-            body: JSON.stringify(series)
+        textPopUp("Success", `Apakah Yakin ingin menghapus data ${series.title}`, "success").then(async (result) => {
+            if (result.isConfirmed) {
+                const response = await fetch('/api/deleteseries', {
+                    method: "POST",
+                    body: JSON.stringify(series)
+                })
+                const postRemove = await response.json()
+                if (postRemove.status) {
+                    textPopUp("Success", `Berhasil Menghapus Data ${series.title}`, "success")
+                    setData(res.filter(i => i.title !== series.title))
+                    router.refresh()
+                }
+            }
         })
-        const postRemove = await response.json()
-        if (postRemove.status) {
-            textPopUp("Success", `Berhasil Menghapus Data ${series.title}`, "success")
-            setData(res.filter(i => i.title !== series.title))
-            router.refresh()
-        }
+    }
+    const handleEdit = (event, series) => {
+        event.preventDefault()
+        textEditPopUp("Edit Data", series).then(async (result) => {
+            if(result.isConfirmed) {
+                const response = await fetch('/api/editseries', {
+                    method: "POST",
+                    body: JSON.stringify(result.value)
+                })
+                const postEdit = await response.json()
+                if(postEdit.status) {
+                    textPopUp("Success", `Berhasil Mengubah Data ${series.title}`, "success")
+                    setData(res.filter(i => i.title !== series.title).concat(result.value))
+                    router.refresh()
+                }
+            }
+        })
     }
 
 
@@ -35,14 +54,14 @@ export default function ListData({ res, setData }) {
                 </tr>
             </thead>
             <tbody>
-                {res?.map(res => {
+                {res?.map((res, index) => {
                     return (
-                        <tr key={res.id} className="border-b border-color-abu4 text-sm">
+                        <tr key={index} className="border-b border-color-abu4 text-sm">
                             <td className="px-5 pt-3">{res.title}</td>
                             <td className="px-5 pt-3 hidden lg:block mt-2">{res.release}</td>
                             <td className="px-5 pt-3 text-center">
                                 <div className="flex flex-row gap-2 justify-center items-center">
-                                    <button className="p-2 bg-color-accent rounded-md">View</button>
+                                    <button onClick={(event) => handleEdit(event, res)} className="p-2 bg-color-accent rounded-md">Edit</button>
                                     <button onClick={(event) => handleRemove(event, res)} className="bg-color-red p-2 rounded-md">Delete</button>
                                 </div>
                             </td>
