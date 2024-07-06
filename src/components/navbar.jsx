@@ -2,14 +2,34 @@
 
 import { List, MonitorPlay, Book, CaretDown, FolderSimplePlus } from "@phosphor-icons/react"
 import Image from "next/image"
-import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
 
 
 export default function Navbar() {
 
+    const router = useRouter()
+
+    useEffect(() => {
+        const getAccount = localStorage.getItem('username');
+        const getPassword = localStorage.getItem('password');
+
+        if (getAccount === null || getPassword === null) {
+            router.replace('/');
+        }
+
+    }, [router]);
+
     const [sidebar, setSidebar] = useState(false)
     const [dropdown, setDropdown] = useState(false)
     const [listButton, setListButton] = useState(false)
+
+    const handleLogout = () => {
+        event.preventDefault()
+        localStorage.removeItem("username")
+        localStorage.removeItem("password")
+        return router.replace("/")
+    }
 
     return (
         <>
@@ -20,7 +40,7 @@ export default function Navbar() {
 
                         <div className="flex items-center justify-center gap-4">
                             <button onClick={() => setSidebar(!sidebar)}><List size={34} className="text-color-putih lg:hidden block" /></button>
-                            <span className="text-color-putih text-2xl">KomikDesu</span>
+                            <a href="/dashboard" className="text-color-putih text-2xl">KomikDesu</a>
                         </div>
 
                         <div className="relative flex items-center text-color-putih">
@@ -28,10 +48,10 @@ export default function Navbar() {
                             {dropdown && (
                                 <div className="absolute right-0 top-14 mt-2 w-60 bg-white rounded-md shadow-lg bg-color-abu2 z-50">
                                     <div className="flex flex-col p-4">
-                                        <h1 className="text-md">Andrian</h1>
-                                        <h1 className="text-sm">andrianpratama@gmail.com</h1>
+                                        <h1 className="text-md">admin</h1>
+                                        <h1 className="text-sm">admin@gmail.com</h1>
                                         <div className="w-full border-b border-color-abu mt-1"></div>
-                                        <button className="mt-2 text-start hover:bg-color-biru rounded-md p-1">Sign Out</button>
+                                        <button onClick={handleLogout} className="mt-2 text-start hover:bg-color-biru rounded-md p-1">Sign Out</button>
                                     </div>
                                 </div>
                             )}
