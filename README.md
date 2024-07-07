@@ -1,23 +1,26 @@
-<h1>Example 💻</h1>
+<h1>Panel KomikDesu 💻</h1>
+
+<p align="center">
+  <img src="./image/login.png" width="550" />
+</p>
+ 
+<p align="center">Login Page.</p>
 
 <p align="center">
   <img src="./image/dashboard.png" width="550" />
 </p>
  
-<p align="center">Panel Komikdesu.</p>
+<p align="center">Panel Dashboard.</p>
 
 ## Installation For Window/RDP
 
 ```bash
 npm i
 node index.js
+npx prisma db push
+npm run build
+npm start
 ```
-
-## Disclaimer
-
-I am not affiliated with Yanz-Bot, I made this project for educational purposes only.
-
-If you like using this website, donate to them to keep their servers up and running.
 
 ## License
 
