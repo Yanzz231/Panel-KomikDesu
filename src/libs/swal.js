@@ -66,7 +66,8 @@ export const textEditPopUp = async (title, series) => {
                 type: document.getElementById('swal-select1').value,
                 genre: document.getElementById('swal-input2').value,
                 status: document.getElementById('swal-select2').value,
-                release: document.getElementById('swal-input3').value
+                release: document.getElementById('swal-input3').value,
+                before: series.title
             }
 
         }

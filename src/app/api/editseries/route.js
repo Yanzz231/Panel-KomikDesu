@@ -5,14 +5,14 @@ export async function POST(request) {
 
     await prisma.series.updateMany({
         where: {
-            title: data.title
+            title: data.before
         },
         data: {
+            status: data.status,
             title: data.title,
             type: data.type,
             genre: data.genre,
-            release: data.release,
-            status: data.status
+            release: data.release
         }
     })
 

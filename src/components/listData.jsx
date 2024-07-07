@@ -34,6 +34,7 @@ export default function ListData({ res, setData }) {
                     body: JSON.stringify(result.value)
                 })
                 const postEdit = await response.json()
+                console.log(postEdit)
                 if(postEdit.status) {
                     textPopUp("Success", `Berhasil Mengubah Data ${series.title}`, "success")
                     setData(res.filter(i => i.title !== series.title).concat(result.value))
